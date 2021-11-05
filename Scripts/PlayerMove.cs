@@ -21,11 +21,10 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-         
-        moveVector.z = Input.GetAxis("Vertical") * moveSpeed;
-        moveVector.x = Input.GetAxis("Horizontal") * moveSpeed;
+        
+        moveVector = transform.forward * Input.GetAxis("Vertical") * moveSpeed + transform.right * Input.GetAxis("Horizontal") * moveSpeed;
         moveVector.y = Physics.gravity.y;
-
+                
         controller.Move(moveVector);
 
         if (Input.GetAxis("Vertical") > 0) {
@@ -48,6 +47,8 @@ public class PlayerMove : MonoBehaviour
             anim.SetBool("Running", false);
             anim.SetInteger("Direction", 0);
         }
+
+
 
 
     }
