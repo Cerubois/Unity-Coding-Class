@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 650228062}
   - component: {fileID: 650228063}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -468,7 +468,7 @@ PrefabInstance:
     - target: {fileID: 5299645823720771534, guid: beb9e839b531a744c877a785deeaa302,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 5299645823720771534, guid: beb9e839b531a744c877a785deeaa302,
         type: 3}

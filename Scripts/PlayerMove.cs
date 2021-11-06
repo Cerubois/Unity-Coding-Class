@@ -9,12 +9,14 @@ public class PlayerMove : MonoBehaviour
 	CharacterController controller;
 	Vector3 moveVector;
 	public float moveSpeed = 0.1f;
-	
+
+	Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
 		controller = GetComponent<CharacterController>();
+		anim = transform.GetChild(0).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,27 @@ public class PlayerMove : MonoBehaviour
 		moveVector.y = Physics.gravity.y;
 
 		controller.Move(moveVector);
+
+		if(Input.GetAxis("Vertical") > 0) {
+			anim.SetBool("Moving", true);
+			anim.SetInteger("Direction", 0);
+		}
+		else if(Input.GetAxis("Vertical") < 0) {
+			anim.SetBool("Moving", true);
+			anim.SetInteger("Direction", 2);
+		}
+		else if(Input.GetAxis("Horizontal") > 0) {
+			anim.SetBool("Moving", true);
+			anim.SetInteger("Direction", 1);
+		}
+		else if (Input.GetAxis("Horizontal") < 0) {
+			anim.SetBool("Moving", true);
+			anim.SetInteger("Direction", 3);
+		}
+		else {
+			anim.SetBool("Moving", false);
+			anim.SetInteger("Direction", 0);
+		}
 
 
     }
