@@ -23,8 +23,8 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
 		
-		moveVector.x = Input.GetAxis("Horizontal") * moveSpeed;
-		moveVector.z = Input.GetAxis("Vertical") * moveSpeed;
+		moveVector = transform.right * Input.GetAxis("Horizontal") * moveSpeed + 
+			transform.forward * Input.GetAxis("Vertical") * moveSpeed;
 		moveVector.y = Physics.gravity.y;
 
 		controller.Move(moveVector);
