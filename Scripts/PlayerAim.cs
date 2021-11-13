@@ -5,20 +5,38 @@ using UnityEngine;
 public class PlayerAim : MonoBehaviour
 {
 
-	public float rotateSpeed = 1.0f;
+	public float rotateSpeedX = 1.0f;
+	public float rotateSpeedY = 1.0f;
 
+	Vector3 aimVector = Vector3.zero;
+	Transform camTransform;
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
-        
+		Cursor.lockState = CursorLockMode.Locked;
+		camTransform = Camera.main.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-		transform.Rotate(0, Input.GetAxis("Mouse X") * rotateSpeed, 0);
+		transform.Rotate(0, Input.GetAxis("Mouse X") * rotateSpeedX, 0);
 
-		Camera.main.transform.Rotate(Input.GetAxis("Mouse Y") * rotateSpeed, 0, 0);
+		camTransform.Rotate(Input.GetAxis("Mouse Y") * -rotateSpeedY, 0, 0);
+
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+
+			if (Cursor.lockState == CursorLockMode.Locked)
+				Cursor.lockState = CursorLockMode.None;
+			else
+				Cursor.lockState = CursorLockMode.Locked;
+
+		}
+
+		aimVector = camTransform.forward;
+
+		Debug.DrawRay(camTransform.position, aimVector * 50, Color.red);
+
     }
 }
