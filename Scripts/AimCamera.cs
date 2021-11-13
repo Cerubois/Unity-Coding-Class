@@ -7,6 +7,10 @@ public class AimCamera : MonoBehaviour
 
     float rotateSpeed = 1.0f;
 
+    Vector3 aimVector = new Vector3();
+    RaycastHit aimHit;
+    public LayerMask aimLayerMask;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,5 +34,27 @@ public class AimCamera : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
 
         }
+
+        aimVector = Camera.main.transform.forward;
+
+        Debug.DrawRay(Camera.main.transform.position, aimVector * 100, Color.red);
+
+        Physics.Raycast(Camera.main.transform.position, aimVector, out aimHit, 100, aimLayerMask);
+
+        if (Input.GetButtonDown("Fire1")) {
+
+            if(aimHit.transform != null) {
+
+                Destroy(aimHit.transform.gameObject);
+
+            }
+
+        }
+
     }
+
+
+
+
+
 }
