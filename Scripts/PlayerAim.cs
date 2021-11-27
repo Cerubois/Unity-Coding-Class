@@ -10,6 +10,8 @@ public class PlayerAim : MonoBehaviour
 
 	Vector3 aimVector = Vector3.zero;
 	Transform camTransform;
+	RaycastHit aimHit;
+	public LayerMask aimLayerMask;
 
 	// Start is called before the first frame update
 	void Start()
@@ -37,6 +39,15 @@ public class PlayerAim : MonoBehaviour
 		aimVector = camTransform.forward;
 
 		Debug.DrawRay(camTransform.position, aimVector * 50, Color.red);
+
+		Physics.Raycast(camTransform.position, aimVector, out aimHit, 100, aimLayerMask);
+
+		if (Input.GetButtonDown("Fire1")) {
+
+			if(aimHit.transform != null)
+				Destroy(aimHit.transform.gameObject);
+
+		}
 
     }
 }
