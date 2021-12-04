@@ -44,8 +44,13 @@ public class PlayerAim : MonoBehaviour
 
 		if (Input.GetButtonDown("Fire1")) {
 
-			if(aimHit.transform != null)
-				Destroy(aimHit.transform.gameObject);
+			if (aimHit.transform != null) {
+
+				if (aimHit.transform.GetComponent<TargetData>() != null)
+					aimHit.transform.GetComponent<TargetData>().health -= 1;
+				else
+					Destroy(aimHit.transform.gameObject);
+			}
 
 		}
 
