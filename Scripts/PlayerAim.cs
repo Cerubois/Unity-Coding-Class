@@ -13,12 +13,19 @@ public class PlayerAim : MonoBehaviour
 	RaycastHit aimHit;
 	public LayerMask aimLayerMask;
 
+	PlayerWeapon playerWeapon;
+
 	// Start is called before the first frame update
 	void Start()
     {
+
 		Cursor.lockState = CursorLockMode.Locked;
 		camTransform = Camera.main.transform;
-    }
+
+		playerWeapon = transform.GetComponent<PlayerWeapon>();
+
+
+	}
 
     // Update is called once per frame
     void Update()
@@ -47,12 +54,21 @@ public class PlayerAim : MonoBehaviour
 			if (aimHit.transform != null) {
 
 				if (aimHit.transform.GetComponent<TargetData>() != null)
-					aimHit.transform.GetComponent<TargetData>().health -= 1;
+					aimHit.transform.GetComponent<TargetData>().health -= playerWeapon.weaponDamage;
 				else
 					Destroy(aimHit.transform.gameObject);
 			}
 
 		}
 
-    }
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+			playerWeapon.SwitchWeapon(0);
+		if (Input.GetKeyDown(KeyCode.Alpha2))
+			playerWeapon.SwitchWeapon(1);
+
+		if (Input.GetAxis("ScrollWheel") != 0)
+			playerWeapon.SwitchWeapon();
+
+
+	}
 }

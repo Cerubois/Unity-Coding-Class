@@ -1,83 +1,66 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Xml;
-using System.Xml.Linq;
-using System.Xml.XPath;
 using UnityEngine;
 
 public class WeaponDataManager : MonoBehaviour{
 
     TextAsset baseGameXML;
     XmlDocument baseGameXMLDoc;
-    //XElement storedChoiceElement;
 
-    public void Setup(){
+    public void Start(){
         
-        baseGameXML = Resources.Load<TextAsset>("Card Data/BaseGameCardData");
-
+        baseGameXML = Resources.Load<TextAsset>("WeaponData");
         baseGameXMLDoc = new XmlDocument();
         baseGameXMLDoc.LoadXml(baseGameXML.text);
 
     }
 
-    // Update is called once per frame
-    void Update(){
-
-
-        
-    }
-
     public string GetWeaponName(string weaponToSearch) {
 
-        // Set up XPath to search for in the XMLDoc.
-        string path = "weapons/weapon[@name=\"" + weaponToSearch + "\"]/weaponName";
+        // Set up path to search for in the XMLDoc.
+        string path = "weapons/weapon[@name=\"" + weaponToSearch + "\"]/name";
 
-        // In this case, we're searching through BaseGameCardData 'card' nodes that have the 'name' attribute which matches the 'cardToSearch' string,
-        // and then getting the 'cardType' node descending from that card.
-        string thisCardType = baseGameXMLDoc.SelectSingleNode(path).InnerText;
+        // In this case, we're searching through WeaponData 'weapon' nodes that have the 'name' attribute which matches the 'weaponToSearch' string,
+        // and then getting the 'weaponType' node descending from that weapon.
+        string thisWeaponName = baseGameXMLDoc.SelectSingleNode(path).InnerText;
 
-        return thisCardType;
-
-    }
-
-    public bool IsCardPersistent(string cardToSearch) {
-
-        // Set up XPath to search for in the XMLDoc.
-        string path = "cards/card[@name=\"" + cardToSearch + "\"]/persistent";
-
-        // In this case, we're searching through BaseGameCardData 'card' nodes that have the 'name' attribute which matches the 'cardToSearch' string,
-        // and then getting the 'persistent' node descending from that card.
-        XmlNode persistentNode = baseGameXMLDoc.SelectSingleNode(path);
-
-        if (persistentNode != null)
-            return true;
-        else
-            return false;
+        return thisWeaponName;
 
     }
 
-    public int GetCardCost(string cardToSearch) {
+    public float GetWeaponDamage(string weaponToSearch) {
 
-        // Set up XPath to search for in the XMLDoc.
-        string path = "cards/card[@name=\"" + cardToSearch + "\"]/costValue";
+        // Set up path to search for in the XMLDoc.
+        string path = "weapons/weapon[@name=\"" + weaponToSearch + "\"]/damage";
 
-        // In this case, we're searching through BaseGameCardData 'card' nodes that have the 'name' attribute which matches the 'cardToSearch' string,
-        // and then getting the 'costValue' node descending from that card.
-        int thisCardCost = int.Parse(baseGameXMLDoc.SelectSingleNode(path).InnerText);
+        // In this case, we're searching through WeaponData 'weapon' nodes that have the 'name' attribute which matches the 'weaponToSearch' string,
+        // and then getting the 'costValue' node descending from that weapon.
+        float thisWeaponDamage = float.Parse(baseGameXMLDoc.SelectSingleNode(path).InnerText);
 
-        return thisCardCost;
+        return thisWeaponDamage;
+
+    }
+
+    public int GetWeaponCurAmmo(string weaponToSearch) {
+
+        // Set up path to search for in the XMLDoc.
+        string path = "weapons/weapon[@name=\"" + weaponToSearch + "\"]/curAmmo";
+
+        // In this case, we're searching through WeaponData 'weapon' nodes that have the 'name' attribute which matches the 'weaponToSearch' string,
+        // and then getting the 'costValue' node descending from that weapon.
+        int thisWeaponCurAmmo = int.Parse(baseGameXMLDoc.SelectSingleNode(path).InnerText);
+
+        return thisWeaponCurAmmo;
 
     }
 
 
-    public int GetSpecificCardValue(string cardToSearch, string valueNodeName) {
+    public int GetSpecificweaponValue(string weaponToSearch, string valueNodeName) {
 
         int value;
-        string path = "cards/card[@name=\"" + cardToSearch + "\"]/cardEffects/" + valueNodeName;
+        string path = "weapons/weapon[@name=\"" + weaponToSearch + "\"]/weaponEffects/" + valueNodeName;
 
         try {
             int.TryParse(baseGameXMLDoc.SelectSingleNode(path).InnerText, out value);
@@ -92,16 +75,16 @@ public class WeaponDataManager : MonoBehaviour{
 
 
     /// <summary>
-    /// Get all the abilities of the named card
+    /// Get all the abilities of the named weapon
     /// </summary>
-    /// <param name="cardToSearch"></param>
+    /// <param name="weaponToSearch"></param>
     /// <returns></returns>
-    public Dictionary<string, int> GetAllCardEffectValues(string cardToSearch) {
+    public Dictionary<string, int> GetAllweaponEffectValues(string weaponToSearch) {
 
         Dictionary<string, int> effectsAndAmounts = new Dictionary<string, int>();
 
         // Set up XPath to search for in the XMLDoc.
-        string path = "cards/card[@name=\"" + cardToSearch + "\"]/cardEffects";
+        string path = "weapons/weapon[@name=\"" + weaponToSearch + "\"]/weaponEffects";
            
 
         // ----- Get values/amounts of effects (e.g. how much buy power it gives) -----
@@ -138,12 +121,12 @@ public class WeaponDataManager : MonoBehaviour{
             healPowerValue = 0;
         }
 
-        int drawCardValue;
+        int drawweaponValue;
         try {
-            int.TryParse(baseGameXMLDoc.SelectSingleNode(path + "/drawCard").InnerText, out drawCardValue);
+            int.TryParse(baseGameXMLDoc.SelectSingleNode(path + "/drawweapon").InnerText, out drawweaponValue);
         }
         catch {
-            drawCardValue = 0;
+            drawweaponValue = 0;
         }
 
         int vsAntagonistsValue;
@@ -154,12 +137,12 @@ public class WeaponDataManager : MonoBehaviour{
             vsAntagonistsValue = 0;
         }
 
-        int trashCardValue;
+        int trashweaponValue;
         try {
-            int.TryParse(baseGameXMLDoc.SelectSingleNode(path + "/trashCard").InnerText, out trashCardValue);
+            int.TryParse(baseGameXMLDoc.SelectSingleNode(path + "/trashweapon").InnerText, out trashweaponValue);
         }
         catch {
-            trashCardValue = 0;
+            trashweaponValue = 0;
         }
 
         int debtBuyValue;
@@ -202,12 +185,12 @@ public class WeaponDataManager : MonoBehaviour{
             tropePointsValue = 0;
         }
 
-        int scryCardValue;
+        int scryweaponValue;
         try {
-            int.TryParse(baseGameXMLDoc.SelectSingleNode(path + "/scry").InnerText, out scryCardValue);
+            int.TryParse(baseGameXMLDoc.SelectSingleNode(path + "/scry").InnerText, out scryweaponValue);
         }
         catch {
-            scryCardValue = 0;
+            scryweaponValue = 0;
         }
 
         // -----  -----
@@ -221,12 +204,12 @@ public class WeaponDataManager : MonoBehaviour{
             effectsAndAmounts.Add("addShieldPower", shieldPowerValue);
         if (healPowerValue != 0)
             effectsAndAmounts.Add("addHealPower", healPowerValue);
-        if (drawCardValue > 0)
-            effectsAndAmounts.Add("drawCard", drawCardValue);
+        if (drawweaponValue > 0)
+            effectsAndAmounts.Add("drawweapon", drawweaponValue);
         if (vsAntagonistsValue != 0)
             effectsAndAmounts.Add("addAttackPowerVsAnts", vsAntagonistsValue);
-        if (trashCardValue > 0)
-            effectsAndAmounts.Add("trashCard", trashCardValue);
+        if (trashweaponValue > 0)
+            effectsAndAmounts.Add("trashweapon", trashweaponValue);
         if (debtBuyValue != 0)
             effectsAndAmounts.Add("debtBuy", debtBuyValue);
         if (debtAttackValue != 0)
@@ -237,8 +220,8 @@ public class WeaponDataManager : MonoBehaviour{
             effectsAndAmounts.Add("debtHeal", debtHealValue);
         if (tropePointsValue != 0)
             effectsAndAmounts.Add("addTropePoints", tropePointsValue);
-        if (scryCardValue != 0)
-            effectsAndAmounts.Add("scry", scryCardValue);
+        if (scryweaponValue != 0)
+            effectsAndAmounts.Add("scry", scryweaponValue);
 
         return effectsAndAmounts;
 

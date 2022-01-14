@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <weapons>
+    
+    <weapon name="NotAGun">
+        
+        <name>NotAGun</name>
+        <damage>1.0</damage>
+        <reloadSpeed>1.0</reloadSpeed>
+        <curAmmo>10</curAmmo>
+        <maxAmmo>100</maxAmmo>
+        <clipSize>10</clipSize>
+        <fireRate>1.0</fireRate>
+        <range>30.0</range>
+        <accuracy>1.0</accuracy>
+        <swapSpeed>1.0</swapSpeed>
+        <hitParticle></hitParticle>
+        <statusInflicted>none</statusInflicted>
+        <explosionRadius>0.0</explosionRadius>
+    
+    </weapon>
+
     <weapon name="Fart Gun">
-    
-      
-        <img>Antagonist/HallMonitor</img>
-        <cardType>Antagonist</cardType>
-        <hp>3</hp>
-        <attackValue>1</attackValue>
-        <tropePoints>1</tropePoints>
-    
+
+        <name>Fart Gun</name>
+        <damage>3.0</damage>
+        <reloadSpeed>1.0</reloadSpeed>
+        <curAmmo>10</curAmmo>
+        <maxAmmo>100</maxAmmo>
+        <clipSize>10</clipSize>
+        <fireRate>1.0</fireRate>
+        <range>30.0</range>
+        <accuracy>1.0</accuracy>
+        <swapSpeed>1.0</swapSpeed>
+        <hitParticle></hitParticle>
+        <statusInflicted>none</statusInflicted>
+        <explosionRadius>0.0</explosionRadius>
+
     </weapon>
    
 </weapons>
