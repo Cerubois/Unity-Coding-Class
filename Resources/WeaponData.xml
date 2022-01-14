@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<weapons>
+    <weapon name="Fart Gun">
+    
+      
+        <img>Antagonist/HallMonitor</img>
+        <cardType>Antagonist</cardType>
+        <hp>3</hp>
+        <attackValue>1</attackValue>
+        <tropePoints>1</tropePoints>
+    
+    </weapon>
+   
+</weapons>
+
