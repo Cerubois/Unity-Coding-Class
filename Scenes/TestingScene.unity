@@ -662,6 +662,7 @@ GameObject:
   - component: {fileID: 1269651980}
   - component: {fileID: 1269651979}
   - component: {fileID: 1269651978}
+  - component: {fileID: 1269651982}
   m_Layer: 6
   m_Name: Target
   m_TagString: Untagged
@@ -745,6 +746,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1269651982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269651977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d7cb8b124b582d4c808f317eb0dfd8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  destroyParticle: {fileID: 4170851856555082425, guid: 1c05b4bdbe0d2924f990cdf3e810b968,
+    type: 3}
 --- !u!1 &1538368038
 GameObject:
   m_ObjectHideFlags: 0

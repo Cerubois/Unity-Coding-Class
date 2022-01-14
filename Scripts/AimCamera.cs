@@ -45,7 +45,8 @@ public class AimCamera : MonoBehaviour
 
             if(aimHit.transform != null) {
 
-                Destroy(aimHit.transform.gameObject);
+                TargetData target = aimHit.transform.GetComponent<TargetData>();
+                target.health -= 1;
 
             }
 
