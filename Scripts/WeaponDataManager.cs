@@ -17,7 +17,28 @@ public class WeaponDataManager : MonoBehaviour
 		weaponDoc = new XmlDocument();
 		weaponDoc.LoadXml(weaponText.text);
 
+		print(GetWeaponDamage());
+
     }
 
+	public string GetWeaponName() {
+
+		string path = "weapons/weapon[@name=\"NotAGun\"]/name";
+
+		string thisWeaponName = weaponDoc.SelectSingleNode(path).InnerText;
+
+		return thisWeaponName;
+
+	}
+
+	public float GetWeaponDamage() {
+
+		string path = "weapons/weapon[@name=\"NotAGun\"]/weaponDamage";
+
+		float thisWeaponDamage = float.Parse(weaponDoc.SelectSingleNode(path).InnerText);
+
+		return thisWeaponDamage;
+
+	}
 
 }

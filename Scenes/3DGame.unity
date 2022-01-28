@@ -337,6 +337,8 @@ GameObject:
   - component: {fileID: 650228062}
   - component: {fileID: 650228063}
   - component: {fileID: 650228058}
+  - component: {fileID: 650228060}
+  - component: {fileID: 650228059}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -361,6 +363,43 @@ MonoBehaviour:
   aimLayerMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &650228059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650228057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3735a60d9d51b6640b8c8c967b1c9ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &650228060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650228057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac99211b7650c8429fccf26b555cc82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName: NotAGun
+  weaponDamage: 1
+  reloadSpeed: 1
+  curAmmo: 10
+  maxAmmo: 100
+  clipSize: 10
+  fireRate: 1
+  range: 30
+  accuracy: 1
+  swapSpeed: 1
+  hitParticle: {fileID: 0}
+  statusInflicted: none
+  explosionRadius: 0
 --- !u!4 &650228061
 Transform:
   m_ObjectHideFlags: 0

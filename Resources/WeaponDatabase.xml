@@ -4,7 +4,7 @@
 
     <weapon name="NotAGun">
         <name>NotAGun</name>
-        <weaponDamage>1.0</weaponDamage>
+        <weaponDamage>5.5</weaponDamage>
         <reloadSpeed>1.0</reloadSpeed>
         <curAmmo>10</curAmmo>
         <maxAmmo>10</maxAmmo>
@@ -17,7 +17,21 @@
         <statusInflicted></statusInflicted>
         <explosionRadius>0.0</explosionRadius>
     </weapon>
-    
-    
+
+    <weapon name="Fartgun">
+        <name>Fartgun</name>
+        <weaponDamage>10</weaponDamage>
+        <reloadSpeed>1.0</reloadSpeed>
+        <curAmmo>10</curAmmo>
+        <maxAmmo>10</maxAmmo>
+        <clipSize>10</clipSize>
+        <fireRate>1.0</fireRate>
+        <range>30.0</range>
+        <accuracy>1.0</accuracy>
+        <swapSpeed>1.0</swapSpeed>
+        <hitParticle></hitParticle>
+        <statusInflicted></statusInflicted>
+        <explosionRadius>0.0</explosionRadius>
+    </weapon>
     
 </weapons>
