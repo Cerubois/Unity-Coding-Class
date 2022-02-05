@@ -17,13 +17,13 @@ public class WeaponDataManager : MonoBehaviour
 		weaponDoc = new XmlDocument();
 		weaponDoc.LoadXml(weaponText.text);
 
-		print(GetWeaponCurAmmo());
+		print(GetWeaponCurAmmo("NotAGun"));
 
     }
 
-	public string GetWeaponName() {
+	public string GetWeaponName(string newWeaponName) {
 
-		string path = "weapons/weapon[@name=\"NotAGun\"]/name";
+		string path = "weapons/weapon[@name=\"" + newWeaponName + "\"]/name";
 
 		string thisWeaponName = weaponDoc.SelectSingleNode(path).InnerText;
 
@@ -31,9 +31,9 @@ public class WeaponDataManager : MonoBehaviour
 
 	}
 
-	public float GetWeaponDamage() {
+	public float GetWeaponDamage(string newWeaponName) {
 
-		string path = "weapons/weapon[@name=\"NotAGun\"]/weaponDamage";
+		string path = "weapons/weapon[@name=\"" + newWeaponName + "\"]/weaponDamage";
 
 		float thisWeaponDamage = float.Parse(weaponDoc.SelectSingleNode(path).InnerText);
 
@@ -41,9 +41,9 @@ public class WeaponDataManager : MonoBehaviour
 
 	}
 
-	public int GetWeaponCurAmmo() {
+	public int GetWeaponCurAmmo(string newWeaponName) {
 
-		string path = "weapons/weapon[@name=\"NotAGun\"]/curAmmo";
+		string path = "weapons/weapon[@name=\"" + newWeaponName + "\"]/curAmmo";
 
 		int thisWeaponCurAmmo = int.Parse(weaponDoc.SelectSingleNode(path).InnerText);
 
