@@ -6,8 +6,8 @@
         <name>NotAGun</name>
         <weaponDamage>5.5</weaponDamage>
         <reloadSpeed>1.0</reloadSpeed>
-        <curAmmo>10</curAmmo>
-        <maxAmmo>10</maxAmmo>
+        <curAmmo>20</curAmmo>
+        <maxAmmo>100</maxAmmo>
         <clipSize>10</clipSize>
         <fireRate>1.0</fireRate>
         <range>30.0</range>
@@ -22,16 +22,16 @@
         <name>Fartgun</name>
         <weaponDamage>10</weaponDamage>
         <reloadSpeed>1.0</reloadSpeed>
-        <curAmmo>10</curAmmo>
-        <maxAmmo>10</maxAmmo>
-        <clipSize>10</clipSize>
-        <fireRate>1.0</fireRate>
+        <curAmmo>12</curAmmo>
+        <maxAmmo>30</maxAmmo>
+        <clipSize>3</clipSize>
+        <fireRate>0.75</fireRate>
         <range>30.0</range>
-        <accuracy>1.0</accuracy>
+        <accuracy>0.9</accuracy>
         <swapSpeed>1.0</swapSpeed>
         <hitParticle></hitParticle>
         <statusInflicted></statusInflicted>
         <explosionRadius>0.0</explosionRadius>
     </weapon>
-    
+
 </weapons>

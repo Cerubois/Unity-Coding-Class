@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
 
+	public WeaponDataManager weaponDataManager;
+
 	public string weaponName = "NotAGun";
 	public float weaponDamage = 1.0f;
 	public float reloadSpeed = 1.0f;
@@ -19,11 +21,17 @@ public class PlayerWeapon : MonoBehaviour
 	public string statusInflicted = "none";
 	public float explosionRadius = 0.0f;
 
+	public List<string> weaponsHeld = new List<string>();
+	public int curWeapon = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
+		weaponDataManager = transform.GetComponent<WeaponDataManager>();
+
+		UpdateWeaponData();
+
     }
 
     // Update is called once per frame
@@ -31,4 +39,13 @@ public class PlayerWeapon : MonoBehaviour
     {
         
     }
+
+	void UpdateWeaponData() {
+
+		weaponName = weaponDataManager.GetWeaponName();
+		weaponDamage = weaponDataManager.GetWeaponDamage();
+		curAmmo = weaponDataManager.GetWeaponCurAmmo();
+
+	}
+
 }

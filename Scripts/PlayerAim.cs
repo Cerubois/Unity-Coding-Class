@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerAim : MonoBehaviour
 {
 
+	public PlayerWeapon playerWeapon;
+
 	public float rotateSpeedX = 1.0f;
 	public float rotateSpeedY = 1.0f;
 
@@ -18,6 +20,8 @@ public class PlayerAim : MonoBehaviour
     {
 		Cursor.lockState = CursorLockMode.Locked;
 		camTransform = Camera.main.transform;
+
+		playerWeapon = transform.GetComponent<PlayerWeapon>();
     }
 
     // Update is called once per frame
@@ -47,7 +51,7 @@ public class PlayerAim : MonoBehaviour
 			if (aimHit.transform != null) {
 
 				if (aimHit.transform.GetComponent<TargetData>() != null)
-					aimHit.transform.GetComponent<TargetData>().health -= 1;
+					aimHit.transform.GetComponent<TargetData>().health -= playerWeapon.weaponDamage;
 				else
 					Destroy(aimHit.transform.gameObject);
 			}

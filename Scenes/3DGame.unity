@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abc7c7c3dab975f43bd29e59e81276ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 10
 --- !u!1 &594025979
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55106c28e68e5764783493cb7bd6b573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerWeapon: {fileID: 0}
   rotateSpeedX: 1
   rotateSpeedY: 1
   aimLayerMask:
@@ -387,6 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac99211b7650c8429fccf26b555cc82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponDataManager: {fileID: 0}
   weaponName: NotAGun
   weaponDamage: 1
   reloadSpeed: 1
