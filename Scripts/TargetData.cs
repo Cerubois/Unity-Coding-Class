@@ -6,7 +6,7 @@ public class TargetData : MonoBehaviour
 {
 
 	public float health = 10;
-    public Transform deathParticle;
+	public Transform deathParticle;
 
 
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class TargetData : MonoBehaviour
     {
         
 		if(health <= 0) {
-            Instantiate(deathParticle, transform.position, Quaternion.identity);
+			Instantiate(deathParticle, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
 		}
 
