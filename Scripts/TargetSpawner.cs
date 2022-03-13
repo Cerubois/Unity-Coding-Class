@@ -13,11 +13,35 @@ public class TargetSpawner : MonoBehaviour
 	// - Where do we spawn objects
 	// - Limitations in where they spawn
 
+	public GameObject targetPrefab;
+	public int numberToSpawn;
+	public enum SpawnMode {
+		SpawnAtStart,
+		SpawnByTimer,
+		SpawnToLimit
+	}
+	public SpawnMode spawnMode;
+	public List<GameObject> targetList;
+
+	public Vector3 minPos;
+	public Vector3 maxPos;
 
     // Start is called before the first frame update
     void Start()
     {
         
+		if(spawnMode == SpawnMode.SpawnAtStart) {
+
+			for(int curTarget = 0; curTarget < numberToSpawn; curTarget++) {
+				float xPos = Random.Range(minPos.x, maxPos.x);
+				float yPos = Random.Range(minPos.y, maxPos.y);
+				float zPos = Random.Range(minPos.z, maxPos.z);
+
+				Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.identity);
+			}
+
+		}
+
     }
 
     // Update is called once per frame
