@@ -373,10 +373,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPrefab: {fileID: 2803957889376591973, guid: fdb0c392d02091348b6f49c3b6aa1ed8,
     type: 3}
-  numberToSpawn: 100
+  enemyPrefab: {fileID: 1089099125859580, guid: adc8a98e73ca77a41b7d79a6beec2ccb,
+    type: 3}
+  targetsToSpawn: 100
+  enemiesToSpawn: 50
   spawnMode: 0
   targetList: []
-  minPos: {x: 25, y: 3, z: 25}
+  minPos: {x: 25, y: 5, z: 25}
   maxPos: {x: 975, y: 10, z: 975}
 --- !u!4 &1155362906
 Transform:

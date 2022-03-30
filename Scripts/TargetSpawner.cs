@@ -14,7 +14,9 @@ public class TargetSpawner : MonoBehaviour
 	// - Limitations in where they spawn
 
 	public GameObject targetPrefab;
-	public int numberToSpawn;
+	public GameObject enemyPrefab;
+	public int targetsToSpawn;
+	public int enemiesToSpawn;
 	public enum SpawnMode {
 		SpawnAtStart,
 		SpawnByTimer,
@@ -32,12 +34,21 @@ public class TargetSpawner : MonoBehaviour
         
 		if(spawnMode == SpawnMode.SpawnAtStart) {
 
-			for(int curTarget = 0; curTarget < numberToSpawn; curTarget++) {
+			// Spawns all the Targets
+			for(int curTarget = 0; curTarget < targetsToSpawn; curTarget++) {
 				float xPos = Random.Range(minPos.x, maxPos.x);
 				float yPos = Random.Range(minPos.y, maxPos.y);
 				float zPos = Random.Range(minPos.z, maxPos.z);
 
 				Instantiate(targetPrefab, new Vector3(xPos, yPos, zPos), Quaternion.identity);
+			}
+			// Spawns all the Enemies
+			for (int curEnemy = 0; curEnemy < enemiesToSpawn; curEnemy++) {
+				float xPos = Random.Range(minPos.x, maxPos.x);
+				float yPos = Random.Range(minPos.y, maxPos.y);
+				float zPos = Random.Range(minPos.z, maxPos.z);
+
+				Instantiate(enemyPrefab, new Vector3(xPos, yPos, zPos), Quaternion.identity);
 			}
 
 		}
