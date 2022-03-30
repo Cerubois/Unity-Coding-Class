@@ -5,7 +5,9 @@ using UnityEngine;
 public class TargetData : MonoBehaviour
 {
 
-	public float health = 3;
+	public float health = 10;
+	public Transform deathParticle;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,7 @@ public class TargetData : MonoBehaviour
     {
         
 		if(health <= 0) {
+			Instantiate(deathParticle, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
 		}
 

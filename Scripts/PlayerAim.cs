@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerAim : MonoBehaviour
 {
 
+	public PlayerWeapon playerWeapon;
+
 	public float rotateSpeedX = 1.0f;
 	public float rotateSpeedY = 1.0f;
 
@@ -13,19 +15,14 @@ public class PlayerAim : MonoBehaviour
 	RaycastHit aimHit;
 	public LayerMask aimLayerMask;
 
-	PlayerWeapon playerWeapon;
-
 	// Start is called before the first frame update
 	void Start()
     {
-
 		Cursor.lockState = CursorLockMode.Locked;
 		camTransform = Camera.main.transform;
 
 		playerWeapon = transform.GetComponent<PlayerWeapon>();
-
-
-	}
+    }
 
     // Update is called once per frame
     void Update()
@@ -61,14 +58,5 @@ public class PlayerAim : MonoBehaviour
 
 		}
 
-		if (Input.GetKeyDown(KeyCode.Alpha1))
-			playerWeapon.SwitchWeapon(0);
-		if (Input.GetKeyDown(KeyCode.Alpha2))
-			playerWeapon.SwitchWeapon(1);
-
-		if (Input.GetAxis("ScrollWheel") != 0)
-			playerWeapon.SwitchWeapon();
-
-
-	}
+    }
 }

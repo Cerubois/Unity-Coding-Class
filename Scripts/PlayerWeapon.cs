@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWeapon : MonoBehaviour{
+public class PlayerWeapon : MonoBehaviour
+{
 
-	WeaponDataManager weaponDataManager;
+	public WeaponDataManager weaponDataManager;
 
 	public string weaponName = "NotAGun";
 	public float weaponDamage = 1.0f;
@@ -24,45 +25,55 @@ public class PlayerWeapon : MonoBehaviour{
 	public int curWeapon = 0;
 
     // Start is called before the first frame update
-    void Start(){
-
-		weaponDataManager = transform.GetComponent<WeaponDataManager>();
-		print(weaponDataManager.GetWeaponName("Fart Gun"));
-		print(weaponDataManager.GetWeaponDamage("Fart Gun"));
+    void Start()
+    {
 
 		weaponsHeld.Add("NotAGun");
-		weaponsHeld.Add("Fart Gun");
+		weaponsHeld.Add("Fartgun");
 
-	}
+
+		weaponDataManager = transform.GetComponent<WeaponDataManager>();
+
+		UpdateWeaponData();
+
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
 
-	public void SwitchWeapon() {
-
-		if (curWeapon == 0)
-			curWeapon = 1;
-		else
+		if (Input.GetKeyDown(KeyCode.Alpha1)) {
 			curWeapon = 0;
+			UpdateWeaponData();
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha2)) {
+			curWeapon = 1;
+			UpdateWeaponData();
+		}
 
-		print(weaponDataManager.GetWeaponName(weaponsHeld[curWeapon]));
+		if(Input.GetAxis("Mouse ScrollWheel") > 0) {
+			curWeapon += 1;
+			if (curWeapon >= weaponsHeld.Count)
+				curWeapon = 0;
+			UpdateWeaponData();
+		}
+		if (Input.GetAxis("Mouse ScrollWheel") < 0) {
+			curWeapon -= 1;
+			if (curWeapon < 0)
+				curWeapon = weaponsHeld.Count - 1;
+			UpdateWeaponData();
+		}
 
-		weaponDamage = weaponDataManager.GetWeaponDamage(weaponsHeld[curWeapon]);
+
 
 	}
 
-	public void SwitchWeapon(int weaponNum) {
+	void UpdateWeaponData() {
 
-		curWeapon = weaponNum;
-
-		print(weaponDataManager.GetWeaponName(weaponsHeld[curWeapon]));
-
+		weaponName = weaponDataManager.GetWeaponName(weaponsHeld[curWeapon]);
 		weaponDamage = weaponDataManager.GetWeaponDamage(weaponsHeld[curWeapon]);
+		curAmmo = weaponDataManager.GetWeaponCurAmmo(weaponsHeld[curWeapon]);
 
 	}
-
 
 }
