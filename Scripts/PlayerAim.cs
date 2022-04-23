@@ -53,8 +53,8 @@ public class PlayerAim : MonoBehaviour
 				if (aimHit.transform.GetComponent<TargetData>() != null)
 					aimHit.transform.GetComponent<TargetData>().health -= playerWeapon.weaponDamage;
 
-				else if (aimHit.transform.GetComponent<EnemyAI>() != null)
-					aimHit.transform.GetComponent<EnemyAI>().health -= playerWeapon.weaponDamage;
+				//else if (aimHit.transform.GetComponent<EnemyAI>() != null)
+				//	aimHit.transform.GetComponent<EnemyAI>().health -= playerWeapon.weaponDamage;
 
 				else
 					Destroy(aimHit.transform.gameObject);
