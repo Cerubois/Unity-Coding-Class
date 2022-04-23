@@ -5,36 +5,31 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
 
-    public GameObject playerObject;
-    private Vector3 playerPos;
-    public enum behaveMode {
-        patrol,
-        attack
-    }
-    public behaveMode curMode = behaveMode.patrol;
+	public GameObject playerObject;
+	Vector3 playerPos;
+	public enum behaveMode {
+		patrol,
+		attack
+	}
+	public behaveMode curMode;
 
-    Vector3 patrolPoint0;
-    Vector3 patrolPoint1;
-    int curPatrolPoint = 1;
-    public float moveSpeed = 10;
+	public float moveSpeed = 1;
+	public Vector3 patrolPoint0;
+	public Vector3 patrolPoint1;
+	int curPatrol = 0;
 
-    private Rigidbody myRigidbody;
+	Rigidbody myRigidbody;
 
-    public float shootTimer = 0;
-    public float timeBetweenShots = 2.0f;
-
-    public float health = 10;
-
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
 
-        myRigidbody = transform.GetComponent<Rigidbody>();
+		myRigidbody = GetComponent<Rigidbody>();
 
-        patrolPoint0 = transform.position;
-        patrolPoint1 = transform.position + Vector3.forward * 10;
+		patrolPoint0 = transform.position;
+		patrolPoint1 = transform.position + transform.forward * 10;
 
-        playerObject = GameObject.FindGameObjectWithTag("Player");
+		playerObject = GameObject.FindGameObjectWithTag("Player");
 
     }
 
@@ -42,82 +37,57 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
 
-        playerPos = playerObject.transform.position;
+		playerPos = playerObject.transform.position;
 
-        switch (curMode) {
+		switch (curMode) {
 
-            case behaveMode.patrol:
+			case behaveMode.patrol:
 
-                Patrol();
+				Patrol();
 
-                if (Vector3.Distance(transform.position, playerPos) < 25)
-                    curMode = behaveMode.attack;
+				if (Vector3.Distance(transform.position, playerPos) < 20)
+					curMode = behaveMode.attack;
 
-            break;
+			break;
 
-            case behaveMode.attack:
+			case behaveMode.attack:
 
-                MoveTowardsPlayer();
+				myRigidbody.position = Vector3.MoveTowards(myRigidbody.position, playerPos, moveSpeed * Time.deltaTime);
+				transform.LookAt(playerPos);
 
-                shootTimer += Time.deltaTime;
+				break;
 
-                if (Vector3.Distance(transform.position, playerPos) < 20) {
-                    
-                    if (shootTimer > timeBetweenShots) {
-                        FireLaser();
-                        shootTimer = 0;
-                    }
 
-                }
-                else if (Vector3.Distance(transform.position, playerPos) > 30)
-                    curMode = behaveMode.patrol;
 
-                break;
-
-        }
-
-        if (health <= 0) {
-            Destroy(this.gameObject);
-        }
+		}
 
 
     }
 
-    void Patrol() {
+	void Patrol() {
 
-        if(curPatrolPoint == 0) {
+		if(curPatrol == 0) {
 
-            myRigidbody.position = Vector3.MoveTowards(transform.position, patrolPoint0, moveSpeed * Time.deltaTime);
-            transform.LookAt(patrolPoint0);
+			myRigidbody.position = Vector3.MoveTowards(myRigidbody.position, patrolPoint0, moveSpeed * Time.deltaTime);
+			transform.LookAt(patrolPoint0);
 
-            if (Vector3.Distance(transform.position, patrolPoint0) < 1)
-                curPatrolPoint = 1;
+			if (Vector3.Distance(myRigidbody.position, patrolPoint0) < 1) {
+				curPatrol = 1;
+			}
 
-        }
+		}
+		if (curPatrol == 1) {
 
-        else if(curPatrolPoint == 1) {
+			myRigidbody.position = Vector3.MoveTowards(myRigidbody.position, patrolPoint1, moveSpeed * Time.deltaTime);
+			transform.LookAt(patrolPoint1);
 
-            myRigidbody.position = Vector3.MoveTowards(transform.position, patrolPoint1, moveSpeed * Time.deltaTime);
-            transform.LookAt(patrolPoint1);
+			if (Vector3.Distance(myRigidbody.position, patrolPoint1) < 1) {
+				curPatrol = 0;
+			}
 
-            if (Vector3.Distance(transform.position, patrolPoint1) < 1)
-                curPatrolPoint = 0;
+		}
 
-        }
+	}
 
-    }
-
-    void MoveTowardsPlayer() {
-
-        myRigidbody.position = Vector3.MoveTowards(transform.position, playerPos, moveSpeed * Time.deltaTime);
-        transform.LookAt(playerPos);
-
-    }
-
-    void FireLaser() {
-
-        print("Pew");
-
-    }
 
 }

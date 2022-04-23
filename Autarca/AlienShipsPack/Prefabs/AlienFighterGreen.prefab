@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4351941035781178}
   - component: {fileID: 33216508653316524}
   - component: {fileID: 23844358526652866}
-  - component: {fileID: -6485244140207054338}
-  - component: {fileID: -7135966833158175645}
-  - component: {fileID: 4765787857946573444}
+  - component: {fileID: 6497202861284286184}
+  - component: {fileID: 7315108662815683707}
+  - component: {fileID: 4511833393069895484}
   m_Layer: 6
   m_Name: AlienFighterGreen
   m_TagString: Untagged
@@ -59,7 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 257
+  m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: bc3d169a8ef803d4abf078bc075e99e4, type: 2}
@@ -84,7 +84,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &-6485244140207054338
+--- !u!114 &6497202861284286184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089099125859580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c6045b02b29804988de574181702ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObject: {fileID: 0}
+  curMode: 0
+  moveSpeed: 10
+  patrolPoint0: {x: 0, y: 0, z: 0}
+  patrolPoint1: {x: 0, y: 0, z: 0}
+--- !u!54 &7315108662815683707
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,7 +117,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
---- !u!135 &-7135966833158175645
+--- !u!135 &4511833393069895484
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,21 +130,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.9192554
   m_Center: {x: 0, y: -0.098113626, z: -0.30684307}
---- !u!114 &4765787857946573444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1089099125859580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 113ed3ae13b06754bae7c37d9a1f9c7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
-  curMode: 0
-  moveSpeed: 10
-  shootTimer: 0
-  timeBetweenShots: 2
-  health: 10

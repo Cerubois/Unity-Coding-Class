@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4154595508381948}
   - component: {fileID: 33463663454310500}
   - component: {fileID: 23048021916812000}
-  - component: {fileID: 3758500282039763061}
-  - component: {fileID: -3758282643450444902}
-  - component: {fileID: -8105636965427202863}
+  - component: {fileID: -2787305070021283209}
+  - component: {fileID: 8958487615363385111}
+  - component: {fileID: 2651886268451876860}
   m_Layer: 6
   m_Name: AlienFighter
   m_TagString: Untagged
@@ -59,7 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 257
+  m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 1a28d63c1672b9847915a31e7e342324, type: 2}
@@ -84,7 +84,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &3758500282039763061
+--- !u!114 &-2787305070021283209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458391615630120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c6045b02b29804988de574181702ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObject: {fileID: 0}
+  curMode: 0
+  moveSpeed: 10
+  patrolPoint0: {x: 0, y: 0, z: 0}
+  patrolPoint1: {x: 0, y: 0, z: 0}
+--- !u!54 &8958487615363385111
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,7 +117,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
---- !u!135 &-3758282643450444902
+--- !u!135 &2651886268451876860
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,21 +130,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.9192554
   m_Center: {x: 0, y: -0.098113626, z: -0.30684307}
---- !u!114 &-8105636965427202863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1458391615630120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 113ed3ae13b06754bae7c37d9a1f9c7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
-  curMode: 0
-  moveSpeed: 10
-  shootTimer: 0
-  timeBetweenShots: 2
-  health: 10
