@@ -15,6 +15,14 @@ public class PlayerAim : MonoBehaviour
 	RaycastHit aimHit;
 	public LayerMask aimLayerMask;
 
+	public GameObject pauseScreen;
+
+	public int xp = 0;
+	public int level = 1;
+	public int skillPoints = 0;
+
+	public float bonusDmg = 0;
+
 	// Start is called before the first frame update
 	void Start()
     {
@@ -22,6 +30,9 @@ public class PlayerAim : MonoBehaviour
 		camTransform = Camera.main.transform;
 
 		playerWeapon = transform.GetComponent<PlayerWeapon>();
+
+		pauseScreen.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -33,10 +44,7 @@ public class PlayerAim : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 
-			if (Cursor.lockState == CursorLockMode.Locked)
-				Cursor.lockState = CursorLockMode.None;
-			else
-				Cursor.lockState = CursorLockMode.Locked;
+			PauseGame();
 
 		}
 
@@ -50,13 +58,48 @@ public class PlayerAim : MonoBehaviour
 
 			if (aimHit.transform != null) {
 
-				if (aimHit.transform.GetComponent<TargetData>() != null)
-					aimHit.transform.GetComponent<TargetData>().health -= playerWeapon.weaponDamage;
-				else
+				if (aimHit.transform.GetComponent<TargetData>() != null) {
+
+					aimHit.transform.GetComponent<TargetData>().health -= playerWeapon.weaponDamage + bonusDmg;
+
+					if(aimHit.transform.GetComponent<TargetData>().health <= 0) {
+						xp += 5;
+						aimHit.transform.GetComponent<TargetData>().SelfDestruct();
+					}
+
+				}
+				else {
+					// Temp until we access the EnemyAI script instead
+					xp += 10;
 					Destroy(aimHit.transform.gameObject);
+				}
 			}
 
 		}
 
+		// Level Up!
+		// TODO: Change how xp we need per level, maybe we don't skill points every level
+		if(xp >= 20) {
+			level += 1;
+			xp -= 20;
+			skillPoints += 1;
+		}
+
+
     }
+
+	public void PauseGame() {
+
+		if (Cursor.lockState == CursorLockMode.Locked) {
+			Cursor.lockState = CursorLockMode.None;
+			pauseScreen.SetActive(true);
+		}
+		else {
+			Cursor.lockState = CursorLockMode.Locked;
+			pauseScreen.SetActive(false);
+		}
+
+	}
+
+
 }

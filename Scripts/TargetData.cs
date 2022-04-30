@@ -18,12 +18,12 @@ public class TargetData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-		if(health <= 0) {
-			Instantiate(deathParticle, transform.position, Quaternion.identity);
-			Destroy(this.gameObject);
-		}
-
-
+ 
     }
+
+	public void SelfDestruct() {
+		Instantiate(deathParticle, transform.position, Quaternion.identity);
+		Destroy(this.gameObject);
+	}
+
 }
